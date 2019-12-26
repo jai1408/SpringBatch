@@ -14,16 +14,16 @@ url: http://localhost:8080/run/job
 @RequestMapping("/run")
 public class JobController {
 
-    private JobRunner jobRunner;
+	private JobRunner jobRunner;
 
-    @Autowired
-    public JobController(JobRunner jobRunner) {
-        this.jobRunner = jobRunner;
-    }
+	@Autowired
+	public JobController(JobRunner jobRunner) {
+		this.jobRunner = jobRunner;
+	}
 
-    @RequestMapping(value = "/job")
-    public String runJob() {
-        jobRunner.runBatchJob();
-        return String.format("Job Demo1 submitted successfully.");
-    }
+	@RequestMapping(value = "/job")
+	public String runJob() {
+		jobRunner.runBatchJob();
+		return String.format("Job Demo1 submitted successfully.");
+	}
 }

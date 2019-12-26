@@ -12,19 +12,18 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableAsync
 public class BaseConfig {
 
-    public JobRepository jobRepository;
+	public JobRepository jobRepository;
 
-    @Autowired
-    public BaseConfig(JobRepository jobRepository) {
-        this.jobRepository = jobRepository;
-    }
+	@Autowired
+	public BaseConfig(JobRepository jobRepository) {
+		this.jobRepository = jobRepository;
+	}
 
-    @Bean
-    public JobLauncher simpleJobLauncher() {
-        SimpleJobLauncher jobLauncher = new SimpleJobLauncher();
-        jobLauncher.setJobRepository(jobRepository);
-        return jobLauncher;
-    }
-
+	@Bean
+	public JobLauncher simpleJobLauncher() {
+		SimpleJobLauncher jobLauncher = new SimpleJobLauncher();
+		jobLauncher.setJobRepository(jobRepository);
+		return jobLauncher;
+	}
 
 }
