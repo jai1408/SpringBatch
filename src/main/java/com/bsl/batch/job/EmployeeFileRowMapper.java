@@ -1,4 +1,4 @@
-package com.bsl.batch.mapper;
+package com.bsl.batch.job;
 
 import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.batch.item.file.transform.FieldSet;

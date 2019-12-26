@@ -1,4 +1,4 @@
-package com.bsl.batch.processor;
+package com.bsl.batch.job;
 
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.stereotype.Component;

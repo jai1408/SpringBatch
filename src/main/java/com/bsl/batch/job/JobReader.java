@@ -1,9 +1,8 @@
 package com.bsl.batch.job;
 
 import com.bsl.batch.dto.EmployeeDTO;
-import com.bsl.batch.mapper.EmployeeFileRowMapper;
 import com.bsl.batch.model.Employee;
-import com.bsl.batch.processor.JobProcessor;
+
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;

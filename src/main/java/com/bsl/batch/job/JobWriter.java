@@ -1,4 +1,4 @@
-package com.bsl.batch.writer;
+package com.bsl.batch.job;
 
 import java.util.List;
 
