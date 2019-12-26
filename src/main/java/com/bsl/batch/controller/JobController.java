@@ -1,9 +1,10 @@
 package com.bsl.batch.controller;
 
-import com.bsl.batch.runner.JobRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.bsl.batch.job.JobRunner;
 
 /*
 url: http://localhost:8080/run/job

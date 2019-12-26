@@ -1,4 +1,4 @@
-package com.bsl.batch.runner;
+package com.bsl.batch.job;
 
 import java.util.Date;
 
