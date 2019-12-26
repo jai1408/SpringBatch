@@ -25,12 +25,12 @@ public class JobRunner {
 	private static final Logger logger = LoggerFactory.getLogger(JobRunner.class);
 
 	private JobLauncher simpleJobLauncher;
-	private Job demo1;
+	private Job demo;
 
 	@Autowired
-	public JobRunner(Job demo1, JobLauncher jobLauncher) {
+	public JobRunner(Job demo, JobLauncher jobLauncher) {
 		this.simpleJobLauncher = jobLauncher;
-		this.demo1 = demo1;
+		this.demo = demo;
 	}
 
 	@Async
@@ -38,7 +38,7 @@ public class JobRunner {
 		JobParametersBuilder jobParametersBuilder = new JobParametersBuilder();
 		jobParametersBuilder.addString(Constants.FILE_NAME_CONTEXT_KEY, "emp.txt");
 		jobParametersBuilder.addDate("date", new Date(), true);
-		runJob(demo1, jobParametersBuilder.toJobParameters());
+		runJob(demo, jobParametersBuilder.toJobParameters());
 	}
 
 	public void runJob(Job job, JobParameters parameters) {
