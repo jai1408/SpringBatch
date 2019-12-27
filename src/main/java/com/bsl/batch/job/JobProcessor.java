@@ -3,14 +3,13 @@ package com.bsl.batch.job;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.stereotype.Component;
 
-import com.bsl.batch.dto.EmployeeDTO;
 import com.bsl.batch.model.Employee;
 
 @Component
-public class JobProcessor implements ItemProcessor<EmployeeDTO, Employee> {
+public class JobProcessor implements ItemProcessor<Employee, Employee> {
 
 	@Override
-	public Employee process(EmployeeDTO employeeDTO) throws Exception {
+	public Employee process(Employee employeeDTO) throws Exception {
 		Employee employee = new Employee();
 		employee.setEmployeeId(employeeDTO.getEmployeeId());
 		employee.setFirstName(employeeDTO.getFirstName());
