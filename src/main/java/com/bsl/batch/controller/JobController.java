@@ -6,10 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bsl.batch.job.JobRunner;
 
-/*
-url: http://localhost:8080/run/job
- */
-
 @RestController
 @RequestMapping("/run")
 public class JobController {
@@ -24,6 +20,6 @@ public class JobController {
 	@RequestMapping(value = "/job")
 	public String runJob() {
 		jobRunner.runBatchJob();
-		return String.format("Job Demo1 submitted successfully.");
+		return String.format("Job submitted successfully.");
 	}
 }
