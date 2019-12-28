@@ -1,6 +1,7 @@
 package com.bsl.batch.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,9 +18,9 @@ public class JobController {
 		this.jobRunner = jobRunner;
 	}
 
-	@RequestMapping(value = "/job")
+	@GetMapping(value = "/job")
 	public String runJob() {
 		jobRunner.runBatchJob();
-		return String.format("Job submitted successfully.");
+		return "Job submitted successfully.";
 	}
 }
