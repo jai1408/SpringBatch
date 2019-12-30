@@ -1,12 +1,9 @@
-package com.bsl.batch.model;
+package com.bsl.batch.job.model;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
-public class Employee {
+public class EmployeeDTO {
 
-	@Id
 	private String employeeId;
 	private String firstName;
 	private String lastName;
@@ -51,12 +48,6 @@ public class Employee {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	@Override
-	public String toString() {
-		return "Employee [employeeId=" + employeeId + ", firstName=" + firstName + ", lastName=" + lastName + ", age="
-				+ age + ", email=" + email + "]";
 	}
 
 }

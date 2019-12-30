@@ -8,6 +8,7 @@ import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.launch.support.SimpleJobLauncher;
 import org.springframework.batch.core.repository.JobRepository;
+import org.springframework.batch.core.step.tasklet.SimpleSystemProcessExitCodeMapper;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
@@ -19,6 +20,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.core.task.SimpleAsyncTaskExecutor;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 import com.bsl.batch.job.JobProcessor;
@@ -33,7 +36,7 @@ public class BatchJobConfig {
 	private StepBuilderFactory stepBuilderFactory;
 	private JobProcessor jobProcessor;
 	private JobWriter jobWriter;
-	public JobRepository jobRepository;
+	private JobRepository jobRepository;
 
 	@Bean
 	public JobLauncher simpleJobLauncher() {
@@ -60,8 +63,20 @@ public class BatchJobConfig {
 
 	@Bean
 	public Step demoStep() throws Exception {
-		return this.stepBuilderFactory.get("step1").<Employee, Employee>chunk(5).reader(employeeReader())
-				.processor(jobProcessor).writer(jobWriter).build();
+		return this.stepBuilderFactory
+				.get("step1")
+				.<Employee, Employee>chunk(5)
+				.reader(employeeReader())
+				.processor(jobProcessor)
+				.writer(jobWriter)
+				//.taskExecutor(taskExecutor())
+				.build();
+	}
+	
+	public TaskExecutor taskExecutor() {
+		SimpleAsyncTaskExecutor simpleAsyncTaskExecutor = new SimpleAsyncTaskExecutor();
+		simpleAsyncTaskExecutor.setConcurrencyLimit(5);
+		return simpleAsyncTaskExecutor;
 	}
 
 	@Bean
@@ -80,7 +95,7 @@ public class BatchJobConfig {
 				setLineTokenizer(new DelimitedLineTokenizer() {
 					{
 						setNames("employeeId", "firstName", "lastName", "email", "age");
-						setDelimiter(DELIMITER_TAB);
+						setDelimiter(",");
 					}
 				});
 				setFieldSetMapper(new BeanWrapperFieldSetMapper<Employee>() {
@@ -94,14 +109,14 @@ public class BatchJobConfig {
 	}
 	
 	/*@Bean
-    public FlatFileItemReader<User> itemReader() {
+    public FlatFileItemReader<User> employeeReader() {
 
-        FlatFileItemReader<User> flatFileItemReader = new FlatFileItemReader<>();
-        flatFileItemReader.setResource(new FileSystemResource("src/main/resources/users.csv"));
-        flatFileItemReader.setName("CSV-Reader");
-        flatFileItemReader.setLinesToSkip(1);
-        flatFileItemReader.setLineMapper(lineMapper());
-        return flatFileItemReader;
+        FlatFileItemReader<User> reader = new FlatFileItemReader<>();
+        reader.setResource(new FileSystemResource("src/main/resources/users.csv"));
+        reader.setName("CSV-Reader");
+        reader.setLinesToSkip(1);
+        reader.setLineMapper(lineMapper());
+        return reader;
     }
 
     @Bean

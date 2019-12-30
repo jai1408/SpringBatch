@@ -36,7 +36,7 @@ public class JobRunner {
 	@Async
 	public void runBatchJob() {
 		JobParametersBuilder jobParametersBuilder = new JobParametersBuilder();
-		jobParametersBuilder.addString(Constants.FILE_NAME_CONTEXT_KEY, "emp.txt");
+		jobParametersBuilder.addString(Constants.FILE_NAME_CONTEXT_KEY, "employee.csv");
 		jobParametersBuilder.addDate("date", new Date(), true);
 		runJob(demo, jobParametersBuilder.toJobParameters());
 	}
