@@ -1,9 +1,12 @@
-package com.bsl.batch.job.model;
+package com.citi.batch.model;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
-public class EmployeeDTO {
+@Entity
+public class Employee {
 
+	@Id
 	private String employeeId;
 	private String firstName;
 	private String lastName;
@@ -48,6 +51,12 @@ public class EmployeeDTO {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [employeeId=" + employeeId + ", firstName=" + firstName + ", lastName=" + lastName + ", age="
+				+ age + ", email=" + email + "]";
 	}
 
 }

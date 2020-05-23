@@ -1,4 +1,4 @@
-package com.bsl.batch.job;
+package com.citi.batch.job;
 
 import java.util.Random;
 
@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.stereotype.Component;
 
-import com.bsl.batch.model.Employee;
+import com.citi.batch.model.Employee;
 
 @Component
 public class JobProcessor implements ItemProcessor<Employee, Employee> {

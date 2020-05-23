@@ -1,4 +1,4 @@
-package com.bsl.batch.utils;
+package com.citi.batch.utils;
 
 public class Constants {
 

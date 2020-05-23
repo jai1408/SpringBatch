@@ -1,11 +1,11 @@
-package com.bsl.batch.controller;
+package com.citi.batch.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bsl.batch.job.JobRunner;
+import com.citi.batch.job.JobRunner;
 
 @RestController
 @RequestMapping("/run")

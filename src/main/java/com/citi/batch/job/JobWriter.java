@@ -1,4 +1,4 @@
-package com.bsl.batch.job;
+package com.citi.batch.job;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.bsl.batch.model.Employee;
-import com.bsl.batch.repository.EmployeeRepo;
+import com.citi.batch.model.Employee;
+import com.citi.batch.repository.EmployeeRepo;
 
 @Component
 public class JobWriter implements ItemWriter<Employee> {

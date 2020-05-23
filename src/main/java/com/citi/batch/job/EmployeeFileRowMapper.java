@@ -1,8 +1,9 @@
-package com.bsl.batch.job;
+package com.citi.batch.job;
 
-import com.bsl.batch.job.model.EmployeeDTO;
 import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.batch.item.file.transform.FieldSet;
+
+import com.citi.batch.job.model.EmployeeDTO;
 
 public class EmployeeFileRowMapper implements FieldSetMapper<EmployeeDTO> {
 

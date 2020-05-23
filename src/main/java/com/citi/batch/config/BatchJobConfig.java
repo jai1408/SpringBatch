@@ -1,4 +1,4 @@
-package com.bsl.batch.config;
+package com.citi.batch.config;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -24,9 +24,9 @@ import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableAsync;
 
-import com.bsl.batch.job.JobProcessor;
-import com.bsl.batch.job.JobWriter;
-import com.bsl.batch.model.Employee;
+import com.citi.batch.job.JobProcessor;
+import com.citi.batch.job.JobWriter;
+import com.citi.batch.model.Employee;
 
 @Configuration
 @EnableAsync
@@ -63,16 +63,12 @@ public class BatchJobConfig {
 
 	@Bean
 	public Step demoStep() throws Exception {
-		return this.stepBuilderFactory
-				.get("step1")
-				.<Employee, Employee>chunk(5)
-				.reader(employeeReader())
-				.processor(jobProcessor)
-				.writer(jobWriter)
-				//.taskExecutor(taskExecutor())
+		return this.stepBuilderFactory.get("step1").<Employee, Employee>chunk(5).reader(employeeReader())
+				.processor(jobProcessor).writer(jobWriter)
+				// .taskExecutor(taskExecutor())
 				.build();
 	}
-	
+
 	public TaskExecutor taskExecutor() {
 		SimpleAsyncTaskExecutor simpleAsyncTaskExecutor = new SimpleAsyncTaskExecutor();
 		simpleAsyncTaskExecutor.setConcurrencyLimit(5);
@@ -107,34 +103,29 @@ public class BatchJobConfig {
 		});
 		return reader;
 	}
-	
-	/*@Bean
-    public FlatFileItemReader<User> employeeReader() {
 
-        FlatFileItemReader<User> reader = new FlatFileItemReader<>();
-        reader.setResource(new FileSystemResource("src/main/resources/users.csv"));
-        reader.setName("CSV-Reader");
-        reader.setLinesToSkip(1);
-        reader.setLineMapper(lineMapper());
-        return reader;
-    }
-
-    @Bean
-    public LineMapper<User> lineMapper() {
-
-        DefaultLineMapper<User> defaultLineMapper = new DefaultLineMapper<>();
-        DelimitedLineTokenizer lineTokenizer = new DelimitedLineTokenizer();
-
-        lineTokenizer.setDelimiter(",");
-        lineTokenizer.setStrict(false);
-        lineTokenizer.setNames(new String[]{"id", "name", "dept", "salary"});
-
-        BeanWrapperFieldSetMapper<User> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
-        fieldSetMapper.setTargetType(User.class);
-
-        defaultLineMapper.setLineTokenizer(lineTokenizer);
-        defaultLineMapper.setFieldSetMapper(fieldSetMapper);
-
-        return defaultLineMapper;
-    }*/
+	/*
+	 * @Bean public FlatFileItemReader<User> employeeReader() {
+	 * 
+	 * FlatFileItemReader<User> reader = new FlatFileItemReader<>();
+	 * reader.setResource(new FileSystemResource("src/main/resources/users.csv"));
+	 * reader.setName("CSV-Reader"); reader.setLinesToSkip(1);
+	 * reader.setLineMapper(lineMapper()); return reader; }
+	 * 
+	 * @Bean public LineMapper<User> lineMapper() {
+	 * 
+	 * DefaultLineMapper<User> defaultLineMapper = new DefaultLineMapper<>();
+	 * DelimitedLineTokenizer lineTokenizer = new DelimitedLineTokenizer();
+	 * 
+	 * lineTokenizer.setDelimiter(","); lineTokenizer.setStrict(false);
+	 * lineTokenizer.setNames(new String[]{"id", "name", "dept", "salary"});
+	 * 
+	 * BeanWrapperFieldSetMapper<User> fieldSetMapper = new
+	 * BeanWrapperFieldSetMapper<>(); fieldSetMapper.setTargetType(User.class);
+	 * 
+	 * defaultLineMapper.setLineTokenizer(lineTokenizer);
+	 * defaultLineMapper.setFieldSetMapper(fieldSetMapper);
+	 * 
+	 * return defaultLineMapper; }
+	 */
 }

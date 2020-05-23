@@ -1,4 +1,4 @@
-package com.bsl.batch.job;
+package com.citi.batch.job;
 
 import java.util.Date;
 
@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
-import com.bsl.batch.utils.Constants;
+import com.citi.batch.utils.Constants;
 
 @Component
 public class JobRunner {
