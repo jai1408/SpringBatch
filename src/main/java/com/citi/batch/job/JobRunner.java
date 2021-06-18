@@ -26,6 +26,7 @@ public class JobRunner {
 
 	private JobLauncher simpleJobLauncher;
 	private Job demo;
+	@Autowired S3BucketService s3BucketService;
 
 	@Autowired
 	public JobRunner(Job demo, JobLauncher jobLauncher) {
@@ -34,7 +35,10 @@ public class JobRunner {
 	}
 
 	@Async
+	@Scheduled(cron="${job.scheduler.cronExp}")
 	public void runBatchJob() {
+		logger.info("::*********** Batch job started **********::");
+		S3Obj s3Obj = s3BucketService.listFiles();
 		JobParametersBuilder jobParametersBuilder = new JobParametersBuilder();
 		jobParametersBuilder.addString(Constants.FILE_NAME_CONTEXT_KEY, "employee.csv");
 		jobParametersBuilder.addDate("date", new Date(), true);
